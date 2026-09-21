@@ -19,7 +19,7 @@ class ModBot(commands.Bot):
 
 bot = ModBot()
 
-# قائمة معرفات (IDs) المطورين المحميين
+# قائمة معرفات (IDs) المطورين المحميين من الأوامر الإدارية
 DEV_IDS = [1182602010651017298, 1078717086035103806]
 
 def is_developer(user_id: int) -> bool:
@@ -46,7 +46,7 @@ async def on_app_command_error(interaction: discord.Interaction, error: app_comm
     else:
         await interaction.response.send_message(msg, ephemeral=True)
 
-# ---------------- الأوامر الإدارية ----------------
+# ---------------- الأوامر الإدارية المختصرة ----------------
 
 # 1. أمر مسح الرسائل المختصر (/c)
 @bot.tree.command(name="c", description="مسح عدد من الرسائل من الشات")
@@ -132,6 +132,6 @@ async def nickname(interaction: discord.Interaction, member: discord.Member, new
     await member.edit(nick=new_nick)
     await interaction.followup.send(f"🏷️ تم تغيير لقب {member.mention} إلى: {new_nick}")
 
-# تشغيل البوت عبر متغير البيئة
-token = os.getenv("DISCORD_TOKEN")
+# تشغيل البوت بواسطة التوكن من متغيرات البيئة أو التوكن المباشر
+token = os.getenv("DISCORD_TOKEN", "MTU0NzI2NDIxMTIzNzg2NzYwMA.G6sPci.d0I1J5taGeNHi3glndDKiJ6L4TFX2U3ks8q22Q")
 bot.run(token)
